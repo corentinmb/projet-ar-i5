@@ -1,4 +1,6 @@
 # projet-ar-i5
 
-+ Lancer la page web
++ `npm install`
++ `npm start`
++ Se rendre sur `localhost:3000`
 + Ouvrir la photo de Kevin sur son téléphone
