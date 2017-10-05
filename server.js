@@ -1,7 +1,7 @@
 var express = require('express')
 var path = require('path')
 var app = express();
-var server = app.listen(3000);
+var server = app.listen(process.env.PORT || 3000);
 var io = require('socket.io').listen(server);
 
 const client = require('./src/routes/client')
