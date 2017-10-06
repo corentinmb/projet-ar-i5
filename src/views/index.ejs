@@ -1,12 +1,4 @@
 <html>
-		<script src="/socket.io/socket.io.js"></script>
-		<script>  
-				var socket = io.connect('https://projet-ar.herokuapp.com');
-				socket.on('connect', function(data) {
-					 socket.emit('join', 'Hello World from client');
-				});
-
-			 </script>
 	<body>
 	<a href="client/connect">Lancer un client</a><br/>		
 	<a href="stats">Accéder à l'écran des statistiques</a>

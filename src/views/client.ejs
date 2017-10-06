@@ -2,9 +2,17 @@
 	<script src="https://aframe.io/releases/0.6.1/aframe.js"></script>
 	<script src="../aframe-js.js"></script>
 	<script src="https://rawgit.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
+	<script src="/socket.io/socket.io.js"></script>
+	<script>  
+		var ioClient = io.connect('http://localhost:3000');
+    ioClient.on('connect', function(socket) {
+			var nom = '<%= nom %>';
+			ioClient.emit('join', nom);
+    });
+		 </script>
 	<body style='margin : 0px; overflow: hidden;'>
   <a-scene embedded arjs='sourceType: webcam; debugUIEnabled: true; trackingMethod: best;' stats>
-    <a-marker type='pattern' url='pattern-marker.patt' id="Keukentafel">
+    <a-marker type='pattern' url='../pattern-marker.patt' id="Keukentafel">
 			<!--<a-entity obj-model="obj: url(surprise.obj); mtl: url(surprise.mtl);" scale="0.025 0.025 0.025" rotation="-90 0 0"></a-entity>-->
 			<a-image src="../02.jpg" scale="2 2 2" rotation="-90 0 0"></a-image>
 			<!--<a-entity ply-model="src: url(bulbi.ply);" scale="0.5 0.5 0.5"></a-entity>-->

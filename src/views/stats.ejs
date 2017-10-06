@@ -1,6 +1,31 @@
 <html>
-	<body>
-	Hello
-		<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-	</body>
+
+<head>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+	 crossorigin="anonymous"></script>
+	<script>
+    var ioStats = io.connect('http://localhost:3000');
+	ioStats.on('rafraichirStats', function(data){
+		console.log(data)
+		genererListe(data);
+	});
+
+	function genererListe(d){
+		var array = d;
+		var newHTML = [];
+		$.each(array, function(index, value) {
+			newHTML.push('<span>' + value + '</span>');
+		});
+		$(".element").html(newHTML.join(""));
+	}
+	</script>
+</head>
+
+<body>
+	<div class="element"></div>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+	 crossorigin="anonymous"></script>
+</body>
+
 </html>
