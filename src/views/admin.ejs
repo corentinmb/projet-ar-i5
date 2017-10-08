@@ -1,0 +1,83 @@
+<html>
+
+<head>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+	 crossorigin="anonymous"></script>
+	<script>
+		$(document).ready(function () {
+			checkBtnEnvoi();
+
+			function checkBtnEnvoi() {
+				$('#btnEnvoyerIndice').prop('disabled', true);
+				$('#message').keyup(function () {
+					$('#btnEnvoyerIndice').prop('disabled', this.value == "" ? true : false);
+				})
+
+
+			}
+			var ioAdmin = io.connect();
+			ioAdmin.on('rafraichirStats', function (data) {
+				console.log(data)
+				genererListeJoueurs(data, '#joueurs');
+			});
+
+			ioAdmin.on('getDerniersIndices', function (message) {
+				console.log(message)
+				genererListeIndices(message, '#derniersIndices');
+			});
+
+			function genererListeJoueurs(d, input) {
+				var array = d;
+				var newHTML = [];
+				$.each(array, function (index, value) {
+					newHTML.push('<span>' + value.nom + ' (<i>connexion à ' + value.timestamp.temps + '<i>)</span>');
+				});
+				$(input).html(newHTML.join("<br>"));
+			}
+
+			function genererListeIndices(d, input) {
+				var array = d;
+				var newHTML = [];
+				$.each(array, function (index, value) {
+					newHTML.push('<span><i>' + value.timestamp.temps + '<i> : ' + value.message + '</span>');
+				});
+				$(input).html(newHTML.join("<br>"));
+			}
+
+			$('#message').keydown(function (event) {
+				if (event.keyCode == 13 && !$('#btnEnvoyerIndice').prop('disabled')) {
+					$('#btnEnvoyerIndice').click();
+				}
+			});
+
+			$('#btnEnvoyerIndice').click(function (event) {
+				broadcast();
+			});
+
+			function broadcast() {
+				var message = $('#message').val();
+				if (message != '')
+					ioAdmin.emit('envoyerIndice', message);
+				var message = $('#message').val('');
+				checkBtnEnvoi();
+				$('#message').select();
+			}
+		})
+	</script>
+</head>
+
+<body>
+	<a href="/admin/logout"><button>Déconnexion</button></a>
+	<h1>Admin</h1>
+	<h2>Envoyer un indice</h2>
+	<input id="message" name="message" placeholder="Message" /><button id="btnEnvoyerIndice">Envoyer</button>
+	<h2>Liste des derniers indices envoyés</h2>
+	<div id="derniersIndices"></div>
+	<h2>Liste des joueurs</h2>
+	<div id="joueurs"></div>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+	 crossorigin="anonymous"></script>
+</body>
+
+</html>

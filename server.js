@@ -1,5 +1,8 @@
 var express = require('express')
+var session = require('express-session')
 var path = require('path')
+var moment = require('moment')
+moment.locale('fr'); // 'fr'
 var app = express();
 var server = app.listen(process.env.PORT || 3000);
 var io = require('socket.io').listen(server);
@@ -7,6 +10,7 @@ var bodyParser = require('body-parser')
 
 const client = require('./src/routes/client')
 const stats = require('./src/routes/stats')
+const admin = require('./src/routes/admin')
 
 // CONFIG
 app.set('view engine', 'ejs');
@@ -21,6 +25,13 @@ app.use(express.static(__dirname + '/src/img'))
 app.use(express.static(__dirname + '/src/objects'))
 app.use(express.static(__dirname + '/src/js'))
 
+// session
+app.use(session({
+    secret: 'EPSI2017ERNOUFMONTOUXMOREAUVIBERT',
+    resave: true,
+    saveUninitialized: true
+}));
+
 // HOME
 
 app.get('/',function (req,res){
@@ -32,16 +43,38 @@ app.get('/',function (req,res){
 
 app.use(client)
 app.use(stats)
+app.use(admin)
 
 var utilisateurs = [];
+var derniersIndices = [];
 
-io.on('connection', function(socket) {  
+io.on('connection', function(socket) { 
+    io.sockets.emit('rafraichirStats',utilisateurs)
+    io.sockets.emit('getDerniersIndices',derniersIndices) 
+
     socket.on('join', function(nom) {
-        utilisateurs.push(nom);
+        utilisateurs.push({
+            timestamp:timestamp(),
+            nom:nom
+        })
         io.sockets.emit('rafraichirStats',utilisateurs)
         socket.on('disconnect',function(){
             utilisateurs.splice(utilisateurs.indexOf(nom), 1);
             io.sockets.emit('rafraichirStats',utilisateurs)
         })
-    }); 
+    });
+    socket.on('envoyerIndice', function(message){
+        derniersIndices.push({
+            timestamp:timestamp(),
+            message:message
+        })
+        io.sockets.emit('getDerniersIndices',derniersIndices)
+        io.sockets.emit('envoyerIndiceClient',message)
+    })
 });
+
+function timestamp(){
+    return {
+        date:moment().format('Do MMMM YYYY'), 
+        temps: moment().format('H:mm')}
+}

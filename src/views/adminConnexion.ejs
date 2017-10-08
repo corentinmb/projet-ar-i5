@@ -4,27 +4,18 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
 	 crossorigin="anonymous"></script>
-	<script>
-    var ioStats = io.connect();
-	ioStats.on('rafraichirStats', function(data){
-		console.log(data)
-		genererListeJoueurs(data,'#joueurs');
-	});
-
-	function genererListeJoueurs(d, input){
-		var array = d;
-		var newHTML = [];
-		$.each(array, function(index, value) {
-			newHTML.push('<span>' + value.nom + '</span>');
-		});
-		$(input).html(newHTML.join("<br>"));
-	}
-
-	</script>
+	<script></script>
 </head>
 
 <body>
-	<div id="joueurs"></div>
+	<form action="login" method="GET">
+		<%if (erreur) { %>
+			<div><%= erreur %></div>
+		<% } %>
+		<div>Utilisateur: <input name="u" /></div>
+		<div>Mot de passe: <input name="p" /></div>
+		<button type="submit">Se connecter</button>
+	</form>
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
 	 crossorigin="anonymous"></script>
 </body>
