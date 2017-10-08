@@ -19,11 +19,14 @@
   "homepage": "https://github.com/corentinmb/projet-ar-i5#readme",
   "dependencies": {
     "body-parser": "^1.18.2",
+    "chai": "^4.1.2",
     "ejs": "^2.5.7",
     "express": "^4.16.1",
     "express-session": "^1.15.6",
+    "mocha": "^4.0.1",
     "moment": "^2.18.1",
     "nodemon": "^1.12.1",
-    "socket.io": "^2.0.3"
+    "socket.io": "^2.0.3",
+    "supertest": "^3.0.0"
   }
 }

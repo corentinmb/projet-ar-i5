@@ -78,3 +78,5 @@ function timestamp(){
         date:moment().format('Do MMMM YYYY'), 
         temps: moment().format('H:mm')}
 }
+
+module.exports = server
