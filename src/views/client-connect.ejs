@@ -1,7 +1,64 @@
 <html>
-<body>
-	<form method="POST">
-		<input id="nom" name="nom" placeholder="Nom"/><button>Go</button>
-	</form>
-</body>
-</html>
+		<head>
+			<script type="text/javascript">
+			// Put event listeners into place
+		window.addEventListener("DOMContentLoaded", function() {
+			// Grab elements, create settings, etc.
+            var canvas = document.getElementById('canvas');
+            var context = canvas.getContext('2d');
+            var video = document.getElementById('video');
+            var mediaConfig =  { video: true };
+            var errBack = function(e) {
+            	console.log('An error has occurred!', e)
+            };
+
+			// Put video listeners into place
+            if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+                navigator.mediaDevices.getUserMedia(mediaConfig).then(function(stream) {
+                    video.src = window.URL.createObjectURL(stream);
+                    video.play();
+                });
+            }
+
+            /* Legacy code below! */
+            else if(navigator.getUserMedia) { // Standard
+				navigator.getUserMedia(mediaConfig, function(stream) {
+					video.src = stream;
+					video.play();
+				}, errBack);
+			} else if(navigator.webkitGetUserMedia) { // WebKit-prefixed
+				navigator.webkitGetUserMedia(mediaConfig, function(stream){
+					video.src = window.webkitURL.createObjectURL(stream);
+					video.play();
+				}, errBack);
+			} else if(navigator.mozGetUserMedia) { // Mozilla-prefixed
+				navigator.mozGetUserMedia(mediaConfig, function(stream){
+					video.src = window.URL.createObjectURL(stream);
+					video.play();
+				}, errBack);
+			}
+
+			// Trigger photo take
+			document.getElementById('go').addEventListener('click', function() {
+				context.drawImage(video, 0, 0, 160, 120);
+				document.getElementById('base64').value = canvas.toDataURL();
+			});
+		}, false);
+
+			</script>
+		</head>
+	<body>
+		<form id="connect" method="POST">
+			<input id="nom" name="nom" placeholder="Nom" />
+			<!--
+		Ideally these elements aren't created until it's confirmed that the 
+		client supports video/camera, but for the sake of illustrating the 
+		elements involved, they are created with markup (not JavaScript)
+	-->
+	<video id="video" width="160" height="120" autoplay></video>
+	<canvas style="display:none;" id="canvas" width="160" height="120"></canvas>
+	<input style="display:none;" id="base64" name="base64"/>	
+	<button id="go">Go</button>
+		</form>
+	</body>
+	</html>
