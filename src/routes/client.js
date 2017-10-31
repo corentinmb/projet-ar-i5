@@ -5,10 +5,9 @@ var base64Data = "";
 client.get('/client', function (req, res) {
     //console.log(nom)
     if(nom != "" && base64Data != ""){
+        id=id+1;        
         require("fs").writeFile("src/img/avatars/avatar-"+ id +".png", base64Data, 'base64', function(err) {
-            console.log(err);
-            });
-        id=id+1;
+        });
         res.render('client', {nom: nom});
     } else{
         res.redirect('/client/connect');

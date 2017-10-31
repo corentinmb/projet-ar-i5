@@ -76,8 +76,7 @@ io.on('connection', function(socket) {
     })
 
     socket.on('startTimer', function(){
-         console.log("passe 1");
-         var countDownDate = moment().add(1, 'hours').format('x');
+         var countDownDate = moment().add(15, 'minutes').format('x');
          io.sockets.emit('timer', countDownDate);
     })
 
