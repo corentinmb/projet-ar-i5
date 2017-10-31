@@ -51,7 +51,7 @@ id = 0;
 
 io.on('connection', function(socket) { 
     io.sockets.emit('rafraichirStats',utilisateurs)
-    io.sockets.emit('getDerniersIndices',derniersIndices) 
+    io.sockets.emit('getDerniersIndices',derniersIndices)
 
     socket.on('join', function(nom) {
         utilisateurs.push({
@@ -65,6 +65,7 @@ io.on('connection', function(socket) {
             io.sockets.emit('rafraichirStats',utilisateurs)
         })
     });
+
     socket.on('envoyerIndice', function(message){
         derniersIndices.push({
             timestamp:timestamp(),
@@ -73,6 +74,13 @@ io.on('connection', function(socket) {
         io.sockets.emit('getDerniersIndices',derniersIndices)
         io.sockets.emit('envoyerIndiceClient',message)
     })
+
+    socket.on('startTimer', function(){
+         console.log("passe 1");
+         var countDownDate = moment().add(1, 'hours').format('x');
+         io.sockets.emit('timer', countDownDate);
+    })
+
 });
 
 function timestamp(){

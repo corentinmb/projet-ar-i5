@@ -17,6 +17,10 @@
 		}
 	});
 
+	ioStats.on('timer', function(data){
+		console.log("passe 2");
+	});
+
 	function genererListeJoueurs(d, input){
 		var array = d;
 		var newHTML = [];
