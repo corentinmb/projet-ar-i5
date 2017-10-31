@@ -6,7 +6,7 @@ client.get('/client', function (req, res) {
     //console.log(nom)
     if(nom != "" && base64Data != ""){
         require("fs").writeFile("avatar-"+ Date.now() +".png", base64Data, 'base64', function(err) {
-            console.log(err);
+            //console.log(err);
             });
         res.render('client', {nom: nom});
     } else{

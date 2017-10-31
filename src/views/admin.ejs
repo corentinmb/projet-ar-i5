@@ -18,12 +18,12 @@
 			}
 			var ioAdmin = io.connect();
 			ioAdmin.on('rafraichirStats', function (data) {
-				console.log(data)
+				//console.log(data)
 				genererListeJoueurs(data, '#joueurs');
 			});
 
 			ioAdmin.on('getDerniersIndices', function (message) {
-				console.log(message)
+				//console.log(message)
 				genererListeIndices(message, '#derniersIndices');
 			});
 
