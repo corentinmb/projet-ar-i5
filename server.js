@@ -47,6 +47,7 @@ app.use(admin)
 
 var utilisateurs = [];
 var derniersIndices = [];
+id = 0;
 
 io.on('connection', function(socket) { 
     io.sockets.emit('rafraichirStats',utilisateurs)
@@ -55,7 +56,8 @@ io.on('connection', function(socket) {
     socket.on('join', function(nom) {
         utilisateurs.push({
             timestamp:timestamp(),
-            nom:nom
+            nom:nom,
+            id : id
         })
         io.sockets.emit('rafraichirStats',utilisateurs)
         socket.on('disconnect',function(){

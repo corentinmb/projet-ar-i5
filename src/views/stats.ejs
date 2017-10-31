@@ -8,7 +8,13 @@
     var ioStats = io.connect();
 	ioStats.on('rafraichirStats', function(data){
 		console.log(data)
-		genererListeJoueurs(data,'#joueurs');
+		if (data.length != 0){
+			setTimeout(function(){ genererListeJoueurs(data,'#joueurs') }, 1000);
+		}
+		else{
+			var message = "Pas de joueurs actuellement";
+			afficherNoJoueurs(message, '#joueurs')
+		}
 	});
 
 	function genererListeJoueurs(d, input){
@@ -16,8 +22,15 @@
 		var newHTML = [];
 		$.each(array, function(index, value) {
 			newHTML.push('<span>' + value.nom + '</span>');
+			newHTML.push('<img src="avatars/avatar-'+value.id+'.png" alt="Avatar" height="42" width="42">')
 		});
 		$(input).html(newHTML.join("<br>"));
+	}
+
+	function afficherNoJoueurs(message, input){
+			var newHTML = [];
+			newHTML.push('<span>' + message + '</span>');
+			$(input).html(newHTML.join("<br>"));
 	}
 
 	</script>
