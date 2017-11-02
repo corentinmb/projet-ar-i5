@@ -11,10 +11,10 @@
 
 <body>
 	<div class="wrapper">
-		<form action="login" class="login" method="GET">
-			<%if (erreur) { %>
+		<%if (erreur) { %>
 				<div class="erreur"><%= erreur %></div>
 			<% } %>
+		<form action="login" class="login" method="GET">
 		  <p class="title">Connexion</p>
 		  <input type="text" name="u" placeholder="Utilisateur" autofocus/>
 		  <i class="fa fa-user"></i>
