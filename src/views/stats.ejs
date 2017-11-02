@@ -1,18 +1,13 @@
 <html>
 
-<head>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
-	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-	 crossorigin="anonymous"></script>
-</head>
+<% include header.ejs %>  
 
 <body>
 	<div id="joueurs"></div>
 	<p id="timer"></p>
-	
-	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-	 crossorigin="anonymous"></script>
-	 <% include stats-script.ejs %>  
+
+	<% include footer.ejs %>  
+	<% include stats-script.ejs %>  
 </body>
 
 </html>

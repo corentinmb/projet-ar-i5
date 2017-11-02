@@ -1,10 +1,6 @@
 <html>
 
-<head>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
-	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-	 crossorigin="anonymous"></script>
-</head>
+<% include header.ejs %>  
 
 <body>
 	<a href="/admin/logout"><button>Déconnexion</button></a>
@@ -16,9 +12,8 @@
 	<h2>Liste des joueurs</h2>
 	<div id="joueurs"></div>
 	<button id="startTimer">Start Timer</button>
-	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-	 crossorigin="anonymous"></script>
-	 <% include admin-script.ejs %>  
+	<% include footer.ejs %>  
+	<% include admin-script.ejs %>  
 </body>
 
 </html>

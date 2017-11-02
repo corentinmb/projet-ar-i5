@@ -1,10 +1,5 @@
 <html>
-	<head>
-		<script src="https://aframe.io/releases/0.6.1/aframe.js"></script>
-		<script src="../aframe-js.js"></script>
-		<script src="https://rawgit.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
-		<script src="/socket.io/socket.io.js"></script>
-	</head>
+	<% include header.ejs %>  
 
 	<body style='margin : 0px; overflow: hidden;'>
 		<div id="message"></div>
@@ -23,7 +18,7 @@
     <a-entity camera>
     </a-entity>
   	</a-scene>
-		<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  		<% include footer.ejs %>  
 		<% include client-script.ejs %>  
 	</body>
 </html>
