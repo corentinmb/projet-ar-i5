@@ -1,14 +1,16 @@
 <html>
 	<head>
 		<link type="text/css" rel="stylesheet" href="materialize-css/dist/css/materialize.min.css"  media="screen,projection"/>
+		<link type="text/css" rel="stylesheet" href="animate.css/animate.min.css"/>
 		<link type="text/css" rel="stylesheet" href="custom.css"  media="screen,projection"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
 	</head>
 	<body>
 		<div class="container">
 			<div class="wrapper-100 center-align">
 				<div class="row">
-					<H3 class="center-align sans-serif">ESCAPE ROOM</H3>
+					<H3 class="center-align sans-serif escape-text spacing-letter">ESCAPE ROOM</H3>
 					<div class="divider"></div>
 				</div>
 
@@ -20,7 +22,14 @@
 			</div>
 		</div>
 
+		<div class="center fix-bottom">
+			<span>Valentin Ernouf - Richard Montoux - Corentin Moreau - Kévin Vibert</span>
+		</div>
+
 		<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 		<script type="text/javascript" src="materialize-css/dist/js/materialize.min.js"></script>
+		<script>
+			$('.escape-text').addClass('animated flash');
+		</script>
 	</body>
 </html>

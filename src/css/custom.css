@@ -8,7 +8,7 @@
 }
 
 .wrapper-100{
-	height:100%;
+	height:90%;
 	width: 100%;
 	display: flex;
 	flex-flow: column;
@@ -28,5 +28,12 @@ body{
 
 .sans-serif{
 	font-family: sans-serif;
-	letter-spacing: 1em;
+}
+
+.spacing-letter{
+	letter-spacing: 0.6em;
+}
+
+.fix-bottom{
+	bottom:0;
 }
