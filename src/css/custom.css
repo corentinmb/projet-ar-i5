@@ -37,3 +37,9 @@ body{
 .fix-bottom{
 	bottom:0;
 }
+
+.add-margin-15{
+
+	margin-top: 15px;
+
+}
