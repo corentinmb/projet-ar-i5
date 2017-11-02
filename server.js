@@ -51,9 +51,14 @@ var utilisateurs = [];
 var derniersIndices = [];
 id = 0;
 
+var countDownDate = null;
+
 io.on('connection', function(socket) { 
     io.sockets.emit('rafraichirStats',utilisateurs)
     io.sockets.emit('getDerniersIndices',derniersIndices)
+    if(countDownDate != null)
+        io.sockets.emit('timer', countDownDate);
+
 
     socket.on('join', function(nom) {
         utilisateurs.push({
@@ -78,7 +83,7 @@ io.on('connection', function(socket) {
     })
 
     socket.on('startTimer', function(){
-         var countDownDate = moment().add(15, 'minutes').format('x');
+         countDownDate = moment().add(15, 'minutes').format('x');
          io.sockets.emit('timer', countDownDate);
     })
 
