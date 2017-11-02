@@ -1,8 +1,10 @@
 <html>
 
-<% include header.ejs %>  
+<% include css.ejs %>  
+<% include js.ejs %>  
 
 <body>
+		
 	<a href="/admin/logout"><button>Déconnexion</button></a>
 	<h1>Admin</h1>
 	<h2>Envoyer un indice</h2>
@@ -12,7 +14,6 @@
 	<h2>Liste des joueurs</h2>
 	<div id="joueurs"></div>
 	<button id="startTimer">Start Timer</button>
-	<% include footer.ejs %>  
 	<% include admin-script.ejs %>  
 </body>
 
