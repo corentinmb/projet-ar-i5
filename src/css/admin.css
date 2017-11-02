@@ -146,7 +146,8 @@ body {
 .erreur{
   color: white;
   background-color: #FF654E;
-  width: 36.5%;
+  width: 90%;
+  max-width: 320px;
   height: 30px;
   display: flex;
   justify-content: center;
