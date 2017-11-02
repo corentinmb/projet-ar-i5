@@ -1,0 +1,11 @@
+<script>
+	var ioClient = io.connect();
+	ioClient.on('connect', function(socket) {
+		var nom = '<%= nom %>';
+		ioClient.emit('join', nom);
+	});
+
+	ioClient.on('envoyerIndiceClient', function(data) {
+		$('#message').text(data.message)
+	});
+</script>	

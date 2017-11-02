@@ -1,0 +1,65 @@
+<script>
+$(document).ready(function () {
+			checkBtnEnvoi();
+
+			function checkBtnEnvoi() {
+				$('#btnEnvoyerIndice').prop('disabled', true);
+				$('#message').keyup(function () {
+					$('#btnEnvoyerIndice').prop('disabled', this.value == "" ? true : false);
+				})
+
+
+			}
+			var ioAdmin = io.connect();
+			ioAdmin.on('rafraichirStats', function (data) {
+				//console.log(data)
+				genererListeJoueurs(data, '#joueurs');
+			});
+
+			ioAdmin.on('getDerniersIndices', function (message) {
+				//console.log(message)
+				genererListeIndices(message, '#derniersIndices');
+			});
+
+			$('#startTimer').click(function (event) {
+				ioAdmin.emit('startTimer');
+			});
+
+			function genererListeJoueurs(d, input) {
+				var array = d;
+				var newHTML = [];
+				$.each(array, function (index, value) {
+					newHTML.push('<span>' + value.nom + ' (<i>connexion à ' + value.timestamp.temps + '<i>)</span>');
+				});
+				$(input).html(newHTML.join("<br>"));
+			}
+
+			function genererListeIndices(d, input) {
+				var array = d;
+				var newHTML = [];
+				$.each(array, function (index, value) {
+					newHTML.push('<span><i>' + value.timestamp.temps + '<i> : ' + value.message + '</span>');
+				});
+				$(input).html(newHTML.join("<br>"));
+			}
+
+			$('#message').keydown(function (event) {
+				if (event.keyCode == 13 && !$('#btnEnvoyerIndice').prop('disabled')) {
+					$('#btnEnvoyerIndice').click();
+				}
+			});
+
+			$('#btnEnvoyerIndice').click(function (event) {
+				broadcast();
+			});
+
+			function broadcast() {
+				var message = $('#message').val();
+				if (message != '')
+					ioAdmin.emit('envoyerIndice', message);
+				var message = $('#message').val('');
+				checkBtnEnvoi();
+				$('#message').select();
+			}
+		})
+</script>

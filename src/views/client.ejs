@@ -1,19 +1,11 @@
 <html>
-	<script src="https://aframe.io/releases/0.6.1/aframe.js"></script>
-	<script src="../aframe-js.js"></script>
-	<script src="https://rawgit.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
-	<script src="/socket.io/socket.io.js"></script>
-	<script>  
-		var ioClient = io.connect();
-    ioClient.on('connect', function(socket) {
-			var nom = '<%= nom %>';
-			ioClient.emit('join', nom);
-		});
-		ioClient.on('envoyerIndiceClient', function(data) {
-			$('#message').text(data.message)
-			console.log(data)
-    });
-		 </script>
+	<head>
+		<script src="https://aframe.io/releases/0.6.1/aframe.js"></script>
+		<script src="../aframe-js.js"></script>
+		<script src="https://rawgit.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
+		<script src="/socket.io/socket.io.js"></script>
+	</head>
+
 	<body style='margin : 0px; overflow: hidden;'>
 		<div id="message"></div>
   <a-scene embedded arjs='sourceType: webcam; debugUIEnabled: true; trackingMethod: best;' stats>
@@ -32,5 +24,6 @@
     </a-entity>
   	</a-scene>
 		<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+		<% include client-script.ejs %>  
 	</body>
 </html>
