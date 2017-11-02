@@ -36,13 +36,14 @@
 		// Output the result in an element with id="demo"
 		if(countDownDate == undefined){
 			document.getElementById("notimer").innerHTML = "En attente du lancement de la partie...";
+			document.getElementById("timer").innerHTML = " ";
 		}
 		else{
 			document.getElementById("timer").innerHTML = minutes + ":" + seconds;
 			document.getElementById("notimer").innerHTML = " ";
 		}
 		// If the count down is over, write some text 
-		if (distance < 0) {
+		if (distance < 0 && countDownDate != undefined) {
 			clearInterval(x);
 			document.getElementById("timer").innerHTML = "Fin de la partie !";
 		}

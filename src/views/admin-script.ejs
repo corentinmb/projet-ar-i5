@@ -24,6 +24,9 @@ $(document).ready(function () {
 			$('#startTimer').click(function (event) {
 				ioAdmin.emit('startTimer');
 			});
+			$('#stopTimer').click(function (event) {
+				ioAdmin.emit('stopTimer');
+			});
 
 			function genererListeJoueurs(d, input) {
 				var array = d;
