@@ -4,10 +4,14 @@
 		console.log(data)
 		if (data.length != 0){
 			setTimeout(function(){ genererListeJoueurs(data,'#joueurs') }, 1000);
+			$("#nojoueurs").html("");
+			$(".joueur-label").show();
 		}
 		else{
 			var message = "Pas de joueurs actuellement";
-			afficherNoJoueurs(message, '#joueurs')
+			afficherNoJoueurs(message, '#nojoueurs')
+			$("#joueurs").html("");
+			$(".joueur-label").hide();
 		}
 	});
 
@@ -31,10 +35,11 @@
 		
 		// Output the result in an element with id="demo"
 		if(countDownDate == undefined){
-			document.getElementById("timer").innerHTML = "En attente du lancement de la partie...";
+			document.getElementById("notimer").innerHTML = "En attente du lancement de la partie...";
 		}
 		else{
-			document.getElementById("timer").innerHTML = minutes + "m " + seconds + "s ";
+			document.getElementById("timer").innerHTML = minutes + ":" + seconds;
+			document.getElementById("notimer").innerHTML = " ";
 		}
 		// If the count down is over, write some text 
 		if (distance < 0) {
@@ -47,8 +52,9 @@
 		var array = d;
 		var newHTML = [];
 		$.each(array, function(index, value) {
-			newHTML.push('<span>' + value.nom + '</span>');
-			newHTML.push('<img src="avatars/avatar-'+value.id+'.png" alt="Avatar" height="42" width="42">')
+			newHTML.push('<img class="z-depth-3 responsive-img" src="avatars/avatar-'+value.id+'.png" alt="Avatar">')
+			newHTML.push('<span class="center-align sans-serif">' + value.nom + '</span>');
+			newHTML.push('<br/>');
 		});
 		$(input).html(newHTML.join("<br>"));
 	}
