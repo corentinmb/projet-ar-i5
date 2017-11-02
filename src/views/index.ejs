@@ -1,7 +1,24 @@
 <html>
+	<head>
+		<link type="text/css" rel="stylesheet" href="materialize-css/dist/css/materialize.min.css"  media="screen,projection"/>
+		<link type="text/css" rel="stylesheet" href="custom.css"  media="screen,projection"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	</head>
 	<body>
-	<a href="client/connect">Lancer un client</a><br/>		
-	<a href="stats">Accéder à l'écran des statistiques</a><br/>
-	<a href="admin">Accéder à l'espace d'administration</a>
+		<div class="container">
+			<div class="row">
+				<H2 class="center-align">Escape Room</H2>
+				<div class="divider"></div>
+			</div>
+			
+			<div class="row">
+				<div class="col s4 center"><a class="z-depth-5 waves-effect waves-light btn full-width" href="client/connect">Client</a></div>
+				<div class="col s4 center"><a class="z-depth-5 waves-effect waves-light btn full-width" href="stats">Statistiques</a></div>
+				<div class="col s4 center"><a class="z-depth-5 waves-effect waves-light btn full-width" href="admin">Administration</a></div>
+			</div>	
+		</div>
+
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+		<script type="text/javascript" src="materialize-css/dist/js/materialize.min.js"></script>
 	</body>
 </html>

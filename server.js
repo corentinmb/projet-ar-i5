@@ -24,6 +24,8 @@ app.use(bodyParser.json())
 app.use(express.static(__dirname + '/src/img'))
 app.use(express.static(__dirname + '/src/objects'))
 app.use(express.static(__dirname + '/src/js'))
+app.use(express.static(__dirname + '/src/css'))
+app.use(express.static(__dirname + '/node_modules'))
 
 // session
 app.use(session({
