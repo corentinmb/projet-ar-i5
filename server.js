@@ -86,6 +86,10 @@ io.on('connection', function(socket) {
          countDownDate = moment().add(15, 'minutes').format('x');
          io.sockets.emit('timer', countDownDate);
     })
+    socket.on('stopTimer', function(){
+         countDownDate = undefined;
+         io.sockets.emit('timer', countDownDate);
+    })
 
 });
 
