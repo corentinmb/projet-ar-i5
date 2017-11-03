@@ -1,55 +1,10 @@
 <html>
 	<head>
 		<% include css.ejs %>
-		<script type="text/javascript">
-			// Put event listeners into place
-		window.addEventListener("DOMContentLoaded", function() {
-			// Grab elements, create settings, etc.
-            var canvas = document.getElementById('canvas');
-            var context = canvas.getContext('2d');
-            var video = document.getElementById('video');
-            var mediaConfig =  { video: true };
-            var errBack = function(e) {
-            	console.log('An error has occurred!', e)
-            };
-
-			// Put video listeners into place
-            if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-                navigator.mediaDevices.getUserMedia(mediaConfig).then(function(stream) {
-                    video.src = window.URL.createObjectURL(stream);
-                    video.play();
-                });
-            }
-
-            /* Legacy code below! */
-            else if(navigator.getUserMedia) { // Standard
-				navigator.getUserMedia(mediaConfig, function(stream) {
-					video.src = stream;
-					video.play();
-				}, errBack);
-			} else if(navigator.webkitGetUserMedia) { // WebKit-prefixed
-				navigator.webkitGetUserMedia(mediaConfig, function(stream){
-					video.src = window.webkitURL.createObjectURL(stream);
-					video.play();
-				}, errBack);
-			} else if(navigator.mozGetUserMedia) { // Mozilla-prefixed
-				navigator.mozGetUserMedia(mediaConfig, function(stream){
-					video.src = window.URL.createObjectURL(stream);
-					video.play();
-				}, errBack);
-			}
-
-			// Trigger photo take
-			document.getElementById('go').addEventListener('click', function() {
-				context.drawImage(video, 0, 0, 160, 120);
-				document.getElementById('base64').value = canvas.toDataURL();
-			});
-		}, false);
-			</script>
 	</head>
 	<body>
 		<div class="container">
-			<div class="wrapper-100 center-align">
+			<div class="center-align">
 				<div class="row">
 					<H5 class="center-align sans-serif escape-text spacing-letter">PROFIL</H5>
 				</div>
@@ -65,16 +20,11 @@
 							</div>
 							<div class="col m3 col s1"></div>
 						</div>
-							<!--
-						Ideally these elements aren't created until it's confirmed that the 
-						client supports video/camera, but for the sake of illustrating the 
-						elements involved, they are created with markup (not JavaScript)
-					-->
 						<div class="row">
 							<div class="col m3 col s1"></div>
 							<div class="col m6 col s10">
-								<video id="video" width="160" class="z-depth-3" height="120" autoplay></video>
-								<canvas style="display:none;" id="canvas" width="160" height="120"></canvas>
+								<video width="100%" autoplay></video>
+								<canvas style="display:none;"></canvas>
 								<input style="display:none;" id="base64" name="base64"/>
 							</div>	
 							<div class="col m3 col s1"></div>
@@ -90,7 +40,41 @@
 				</div>	
 			</div>	
 		</div>
+		<script type="text/javascript">
+			'use strict';
+		   
+		   // Put variables in global scope to make them available to the browser console.
+		   var video = document.querySelector('video');
+		   var canvas = window.canvas = document.querySelector('canvas');
+		   canvas.width = 480;
+		   canvas.height = 360;
+		   
+		   var button = document.querySelector('button');
+		   button.onclick = function() {
+			 canvas.width = video.videoWidth;
+			 canvas.height = video.videoHeight;
+			 canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+			 document.getElementById('base64').value = canvas.toDataURL();
 
+		   };
+		   
+		   var constraints = {
+			 audio: false,
+			 video: true
+		   };
+		   
+		   function handleSuccess(stream) {
+			 window.stream = stream; // make stream available to browser console
+			 video.srcObject = stream;
+		   }
+		   
+		   function handleError(error) {
+			 console.log('navigator.getUserMedia error: ', error);
+		   }
+		   
+		   navigator.mediaDevices.getUserMedia(constraints).
+			   then(handleSuccess).catch(handleError);
+				</script>
 			<% include js.ejs %>  
 	</body>
 </html>
