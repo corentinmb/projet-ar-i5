@@ -56,7 +56,14 @@
 				<div class="row">
 					<form id="connect" method="POST">
 						<div class="row">
-							<input id="nom" name="nom" placeholder="Nom" />
+							<div class="col m3 col s1"></div>
+							<div class="col m6 col s10">
+								<div class="input-field">
+									<input id="nom" id="nom" name="nom" type="text" class="validate" />
+									<label for="nom">Nom</label>
+								</div>
+							</div>
+							<div class="col m3 col s1"></div>
 						</div>
 							<!--
 						Ideally these elements aren't created until it's confirmed that the 
@@ -64,12 +71,20 @@
 						elements involved, they are created with markup (not JavaScript)
 					-->
 						<div class="row">
-							<video id="video" width="160" height="120" autoplay></video>
-							<canvas style="display:none;" id="canvas" width="160" height="120"></canvas>
-							<input style="display:none;" id="base64" name="base64"/>	
+							<div class="col m3 col s1"></div>
+							<div class="col m6 col s10">
+								<video id="video" width="160" height="120" autoplay></video>
+								<canvas style="display:none;" id="canvas" width="160" height="120"></canvas>
+								<input style="display:none;" id="base64" name="base64"/>
+							</div>	
+							<div class="col m3 col s1"></div>
 						</div>
 						<div class="row">
-							<button class="blue-grey darken-3 z-depth-5 waves-effect waves-light btn full-width" id="go">Go</button>
+							<div class="col m3 col s1"></div>
+							<div class="col m6 col s10">
+								<button class="blue-grey darken-3 z-depth-5 waves-effect waves-light btn full-width" id="go">Go</button>
+							</div>
+							<div class="col m3 col s1"></div>
 						</div>
 					</form>
 				</div>	
