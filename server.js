@@ -1,3 +1,4 @@
+var sslRedirect = require('heroku-ssl-redirect')
 var express = require('express')
 var session = require('express-session')
 var path = require('path')
@@ -20,6 +21,9 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 // parse application/json
 app.use(bodyParser.json())
+
+// enable ssl redirect
+app.use(sslRedirect());
 
 app.use(express.static(__dirname + '/src/img'))
 app.use(express.static(__dirname + '/src/objects'))
