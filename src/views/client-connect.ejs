@@ -1,80 +1,93 @@
 <html>
-	<head>
-		<% include css.ejs %>
-	</head>
-	<body>
-		<div class="container">
-			<div class="center-align">
-				<div class="row">
-					<H5 class="center-align sans-serif escape-text spacing-letter">PROFIL</H5>
-				</div>
-				<div class="row">
-					<form id="connect" method="POST">
-						<div class="row">
-							<div class="col m3 col s1"></div>
-							<div class="col m6 col s10">
-								<div class="input-field">
-									<input id="nom" id="nom" name="nom" type="text" class="validate" />
-									<label for="nom">Nom</label>
-								</div>
-							</div>
-							<div class="col m3 col s1"></div>
-						</div>
-						<div class="row">
-							<div class="col m3 col s1"></div>
-							<div class="col m6 col s10">
-								<video width="100%" autoplay></video>
-								<canvas style="display:none;"></canvas>
-								<input style="display:none;" id="base64" name="base64"/>
-							</div>	
-							<div class="col m3 col s1"></div>
-						</div>
-						<div class="row">
-							<div class="col m3 col s1"></div>
-							<div class="col m6 col s10">
-								<button class="blue-grey darken-3 z-depth-5 waves-effect waves-light btn full-width" id="go">Go</button>
-							</div>
-							<div class="col m3 col s1"></div>
-						</div>
-					</form>
-				</div>	
-			</div>	
-		</div>
-		<script type="text/javascript">
-			'use strict';
-		   
-		   // Put variables in global scope to make them available to the browser console.
-		   var video = document.querySelector('video');
-		   var canvas = window.canvas = document.querySelector('canvas');
-		   canvas.width = 480;
-		   canvas.height = 360;
-		   
-		   var button = document.querySelector('button');
-		   button.onclick = function() {
-			 canvas.width = video.videoWidth;
-			 canvas.height = video.videoHeight;
-			 canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
-			 document.getElementById('base64').value = canvas.toDataURL();
 
-		   };
-		   
-		   var constraints = {
-			 audio: false,
-			 video: true
-		   };
-		   
-		   function handleSuccess(stream) {
-			 window.stream = stream; // make stream available to browser console
-			 video.srcObject = stream;
-		   }
-		   
-		   function handleError(error) {
-			 console.log('navigator.getUserMedia error: ', error);
-		   }
-		   
-		   navigator.mediaDevices.getUserMedia(constraints).
-			   then(handleSuccess).catch(handleError);
-				</script>
-			<% include js.ejs %>  
-	</body>
+<head>
+	<% include css.ejs %>
+</head>
+
+<body>
+	<div class="container">
+		<div class="center-align">
+			<div class="row">
+				<H5 class="center-align sans-serif escape-text spacing-letter">PROFIL</H5>
+			</div>
+			<div class="row">
+				<form id="connect" method="POST">
+					<div class="row">
+						<div class="col m3 col s1"></div>
+						<div class="col m6 col s10">
+							<div class="input-field">
+								<input id="nom" id="nom" name="nom" type="text" class="validate" />
+								<label for="nom">Nom</label>
+							</div>
+						</div>
+						<div class="col m3 col s1"></div>
+					</div>
+					<div class="row">
+						<div class="col m3 col s1"></div>
+						<div class="col m6 col s10">
+							<video width="100%" autoplay></video>
+							<canvas style="display:none;"></canvas>
+							<input style="display:none;" id="base64" name="base64" />
+						</div>
+						<div class="col m3 col s1"></div>
+					</div>
+					<div class="row">
+						<div class="col m3 col s1"></div>
+						<div class="col m6 col s10">
+							<button class="blue-grey darken-3 z-depth-5 waves-effect waves-light btn full-width" id="go">Go</button>
+						</div>
+						<div class="col m3 col s1"></div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		'use strict';
+
+		// Put variables in global scope to make them available to the browser console.
+		var video = document.querySelector('video');
+		var canvas = window.canvas = document.querySelector('canvas');
+		canvas.width = 480;
+		canvas.height = 360;
+
+		var button = document.querySelector('button');
+		button.onclick = function () {
+			canvas.width = video.videoWidth;
+			canvas.height = video.videoHeight;
+			canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+			document.getElementById('base64').value = canvas.toDataURL();
+			vidOff();
+			
+		};
+
+		var constraints = {
+			audio: false,
+			video: true
+		};
+
+		function handleSuccess(stream) {
+			window.stream = stream; // make stream available to browser console
+			video.srcObject = stream;
+		}
+
+		function handleError(error) {
+			console.log('navigator.getUserMedia error: ', error);
+		}
+
+		navigator.mediaDevices.getUserMedia(constraints).
+			then(handleSuccess).catch(handleError);
+
+		function vidOff() {
+			//clearInterval(theDrawLoop);
+			//ExtensionData.vidStatus = 'off';
+			video.pause();
+			video.src = "";
+			localstream.getTracks()[0].stop();
+			console.log("Vid off");
+		}
+	</script>
+	<% include js.ejs %>
+</body>
+
 </html>
