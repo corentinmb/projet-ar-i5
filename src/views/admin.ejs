@@ -4,17 +4,62 @@
 <% include js.ejs %>  
 
 <body>
-		
-	<a href="/admin/logout"><button>Déconnexion</button></a>
-	<h1>Admin</h1>
-	<h2>Envoyer un indice</h2>
-	<input id="message" name="message" placeholder="Message" /><button id="btnEnvoyerIndice">Envoyer</button>
-	<h2>Liste des derniers indices envoyés</h2>
-	<div id="derniersIndices"></div>
-	<h2>Liste des joueurs</h2>
-	<div id="joueurs"></div>
-	<button id="startTimer">Start Timer</button>
-	<button id="stopTimer">Stop Timer</button>
+	<div class="container">
+		<div class="row">
+			<a href="/admin/logout"><button class="blue-grey darken-3 z-depth-2 waves-effect waves-light btn">Déconnexion</button></a>
+		</div>	
+		<div class="row">
+			<h3 class="center-align sans-serif escape-text spacing-letter">ADMIN</h3>
+		</div>
+		<div class="row">
+			<div class="col s12">
+				<h5 class="sans-serif">Envoyer un indice</h5>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col s12">
+				<div class="input-field">
+					<input id="message" name="message" type="text" class="validate"/>
+					<label for="message">Message</label>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col m4"></div>
+			<div class="col m4 col s12">
+				<button class="center blue-grey darken-3 z-depth-2 waves-effect waves-light btn full-width" id="btnEnvoyerIndice">Envoyer</button>
+			</div>
+			<div class="col m4"></div>
+		</div>
+		<div class="row">
+			<div class="col s12">
+				<h5 class="sans-serif">Liste des derniers indices envoyés</h5>
+			</div>	
+		</div>
+		<div class="row">
+			<div class="col s12">
+				<div id="derniersIndices"></div>
+			</div>	
+		</div>
+		<div class="row">
+			<div class="col s12">
+				<h5 class="sans-serif">Liste des joueurs</h5>
+			</div>	
+		</div>
+		<div class="row">
+			<div class="col s12">
+				<div id="joueurs"></div>
+			</div>	
+		</div>	
+		<div class="row">
+			<div class="col s6">
+				<button class="blue-grey darken-3 z-depth-5 waves-effect waves-light btn full-width" id="startTimer">Start Timer</button>
+			</div>
+			<div class="col s6">
+				<button class="blue-grey darken-3 z-depth-5 waves-effect waves-light btn full-width" id="stopTimer">Stop Timer</button>
+			</div>
+		</div>		
+	</div>	
 	<% include admin-script.ejs %>  
 </body>
 
