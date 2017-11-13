@@ -83,7 +83,8 @@ io.on('connection', function(socket) {
             message:message
         })
         io.sockets.emit('getDerniersIndices',derniersIndices)
-        io.sockets.emit('envoyerIndiceClient',message)
+        io.sockets.emit('envoyerIndiceClient', message)
+        io.sockets.emit('envoyerIndiceStats', message)
     })
 
     socket.on('startTimer', function(){

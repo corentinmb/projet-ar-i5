@@ -65,4 +65,9 @@
 			newHTML.push('<span>' + message + '</span>');
 			$(input).html(newHTML.join("<br>"));
 	}
+
+	ioStats.on('envoyerIndiceStats', function(data) {
+		$("#indice").html("<span class='spacing-letter escape-text'><b>INDICE</b></span></br></br>"+data);
+		setTimeout(function(){ $("#indice").html(" "); }, 10000);
+	});
 </script>
