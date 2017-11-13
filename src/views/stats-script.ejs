@@ -53,7 +53,7 @@
 		var array = d;
 		var newHTML = [];
 		$.each(array, function(index, value) {
-			newHTML.push('<img class="z-depth-3 responsive-img" src="avatars/avatar-'+value.id+'.png" alt="Avatar">')
+			newHTML.push('<img class="z-depth-3 responsive-img max-width-80" src="avatars/avatar-'+value.id+'.png" alt="Avatar">')
 			newHTML.push('<span class="center-align sans-serif">' + value.nom + '</span>');
 			newHTML.push('<br/>');
 		});
