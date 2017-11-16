@@ -66,8 +66,18 @@
 			$(input).html(newHTML.join("<br>"));
 	}
 
+	var timeout = "";
+	var timeout2 = "";
+	var audio_indice = new Audio('/indice.mp3');
+
 	ioStats.on('envoyerIndiceStats', function(data) {
-		$("#indice").html("<span class='spacing-letter escape-text'><b>INDICE</b></span></br></br>"+data);
-		setTimeout(function(){ $("#indice").html(" "); }, 10000);
+		clearTimeout(timeout);
+		clearTimeout(timeout2);
+
+		$("#indice").html("<p class='animation_indice'><span class='spacing-letter escape-text'><b>INDICE</b></span></br></br>"+data+'</p>');
+		$(".animation_indice").addClass("animated fadeIn");
+		audio_indice.play();
+		timeout = setTimeout(function(){ $(".animation_indice").addClass("animated fadeOut"); }, 10000);
+		timeout2 = setTimeout(function(){ $("#indice").html(" ");}, 12000);
 	});
 </script>
