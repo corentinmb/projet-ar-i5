@@ -26,7 +26,7 @@ app.use(bodyParser.json({limit: '50mb'}))
 app.use(sslRedirect());
 
 app.use(express.static(__dirname + '/src/img'))
-app.use(express.static(__dirname + '/src/objects'))
+app.use(express.static(__dirname + '/src/models'))
 app.use(express.static(__dirname + '/src/js'))
 app.use(express.static(__dirname + '/src/css'))
 app.use(express.static(__dirname + '/src/audio'))

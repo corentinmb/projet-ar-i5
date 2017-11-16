@@ -15,6 +15,7 @@ admin.get('/admin', auth, function (req, res) {
     res.render('admin');
 })
 
+
 // Login endpoint
 admin.get('/admin/login', function (req, res) {
     if(req.session && req.session.user === UTILISATEUR && req.session.admin){
