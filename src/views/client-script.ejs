@@ -1,5 +1,20 @@
 <script>
+	
 	var ioClient = io.connect();
+
+	document.querySelector('#kevin').addEventListener('mouseenter', function () {
+		console.log('kevin')
+	});
+
+	document.querySelector('#val').addEventListener('mouseenter', function () {
+		console.log('valentin')
+	});
+
+	document.querySelector('#key').addEventListener('mouseenter', function () {
+		ioClient.emit('findkey');
+    	console.log('clé')
+	});
+
 	ioClient.on('connect', function(socket) {
 		var nom = '<%= nom %>';
 		ioClient.emit('join', nom);
@@ -8,4 +23,5 @@
 	ioClient.on('envoyerIndiceClient', function(data) {
 		$('#message').text(data.message)
 	});
+
 </script>	

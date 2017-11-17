@@ -80,4 +80,30 @@
 		timeout = setTimeout(function(){ $(".animation_indice").addClass("animated fadeOut"); }, 10000);
 		timeout2 = setTimeout(function(){ $("#indice").html(" ");}, 12000);
 	});
+
+	ioStats.on('scenario', function(data) {
+		//Scénario de la clé
+		if(data == 1){
+			clearTimeout(timeout);
+			clearTimeout(timeout2);
+
+			$("#mainGame").html("<p class='animation_indice spacing-letter escape-text'><span class=''><b>Vous devez retrouver la clé</b></span>");
+			$(".animation_indice").addClass("animated fadeIn");
+			timeout = setTimeout(function(){ $(".animation_indice").addClass("animated fadeOut"); }, 10000);
+			timeout2 = setTimeout(function(){ $("#mainGame").html(" ");}, 12000);
+		}
+	});
+
+	ioStats.on('findkey_server', function(data) {
+		//Scénario de la clé
+		if(data == 1){
+			clearTimeout(timeout);
+			clearTimeout(timeout2);
+
+			$("#mainGame").html("<p class='animation_indice spacing-letter escape-text'><span class=''><b>Vous avez trouvé la clé</b></span>");
+			$(".animation_indice").addClass("animated fadeIn");
+			timeout = setTimeout(function(){ $(".animation_indice").addClass("animated fadeOut"); }, 10000);
+			timeout2 = setTimeout(function(){ $("#mainGame").html(" ");}, 12000);
+		}
+	});
 </script>
