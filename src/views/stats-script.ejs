@@ -66,44 +66,46 @@
 			$(input).html(newHTML.join("<br>"));
 	}
 
-	var timeout = "";
-	var timeout2 = "";
+	var timeout_indice = "";
+	var timeout2_indice = "";
+	var timeout_scenario = "";
+	var timeout2_scenario = "";
 	var audio_indice = new Audio('/indice.mp3');
 
 	ioStats.on('envoyerIndiceStats', function(data) {
-		clearTimeout(timeout);
-		clearTimeout(timeout2);
+		clearTimeout(timeout_indice);
+		clearTimeout(timeout2_indice);
 
 		$("#indice").html("<p class='animation_indice'><span class='spacing-letter escape-text'><b>INDICE</b></span></br></br>"+data+'</p>');
 		$(".animation_indice").addClass("animated fadeIn");
 		audio_indice.play();
-		timeout = setTimeout(function(){ $(".animation_indice").addClass("animated fadeOut"); }, 10000);
-		timeout2 = setTimeout(function(){ $("#indice").html(" ");}, 12000);
+		timeout_indice = setTimeout(function(){ $(".animation_indice").addClass("animated fadeOut"); }, 10000);
+		timeout2_indice = setTimeout(function(){ $("#indice").html(" ");}, 12000);
 	});
 
 	ioStats.on('scenario', function(data) {
 		//Scénario de la clé
 		if(data == 1){
-			clearTimeout(timeout);
-			clearTimeout(timeout2);
+			clearTimeout(timeout_scenario);
+			clearTimeout(timeout2_scenario);
 
 			$("#mainGame").html("<p class='animation_indice spacing-letter escape-text'><span class=''><b>Vous devez retrouver la clé</b></span>");
 			$(".animation_indice").addClass("animated fadeIn");
-			timeout = setTimeout(function(){ $(".animation_indice").addClass("animated fadeOut"); }, 10000);
-			timeout2 = setTimeout(function(){ $("#mainGame").html(" ");}, 12000);
+			timeout_scenario = setTimeout(function(){ $(".animation_indice").addClass("animated fadeOut"); }, 10000);
+			timeout2_scenario = setTimeout(function(){ $("#mainGame").html(" ");}, 12000);
 		}
 	});
 
 	ioStats.on('findkey_server', function(data) {
 		//Scénario de la clé
 		if(data == 1){
-			clearTimeout(timeout);
-			clearTimeout(timeout2);
+			clearTimeout(timeout_scenario);
+			clearTimeout(timeout2_scenario);
 
 			$("#mainGame").html("<p class='animation_indice spacing-letter escape-text'><span class=''><b>Vous avez trouvé la clé</b></span>");
 			$(".animation_indice").addClass("animated fadeIn");
-			timeout = setTimeout(function(){ $(".animation_indice").addClass("animated fadeOut"); }, 10000);
-			timeout2 = setTimeout(function(){ $("#mainGame").html(" ");}, 12000);
+			timeout_scenario = setTimeout(function(){ $(".animation_indice").addClass("animated fadeOut"); }, 10000);
+			timeout2_scenario = setTimeout(function(){ $("#mainGame").html(" ");}, 12000);
 		}
 	});
 </script>
