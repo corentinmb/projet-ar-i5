@@ -11,9 +11,9 @@ client.get('/client', function (req, res) {
         res.render('client', {nom: nom});
     } else{
         res.redirect('/client/connect');
-        nom = "";
-        base64Data = "";
     }
+    nom = "";
+    base64Data = "";
 })
 
 client.post('/client/connect', function (req, res) {

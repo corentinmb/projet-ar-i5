@@ -42,7 +42,7 @@ app.use(session({
 // HOME
 
 app.get('/',function (req,res){
-  res.render('index')
+  res.render('index',{partieEnCours: partieLancee, timer: countDownDate ? countDownDate : undefined});
 })
 
 
@@ -55,6 +55,7 @@ app.use(admin)
 var utilisateurs = [];
 var derniersIndices = [];
 scenario = 1;
+partieLancee = false;
 id = 0;
 
 var countDownDate = null;
@@ -93,10 +94,12 @@ io.on('connection', function(socket) {
          countDownDate = moment().add(15, 'minutes').format('x');
          io.sockets.emit('timer', countDownDate);
          io.sockets.emit('scenario', scenario);
+         partieLancee=true;
     })
     socket.on('stopTimer', function(){
          countDownDate = undefined;
          io.sockets.emit('timer', countDownDate);
+         partieLancee=false;
     })
     socket.on('findkey', function(){
         io.sockets.emit('findkey_server',scenario);

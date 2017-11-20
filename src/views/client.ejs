@@ -1,8 +1,8 @@
 <html>
 	<head>
-			<% include css.ejs %>  
-			<% include js.ejs %>
-			
+			<% include css.ejs %>
+			<link type="text/css" rel="stylesheet" href="/custom.css"  media="screen,projection"/>  
+			<% include js.ejs %>	
 	</head>
 	<body>
 		<div id="message"></div>
@@ -25,6 +25,6 @@
 				<a-cursor geometry="primitive: ring" material="color: #464646;    shader: flat"></a-cursor>				
 		</a-entity>
 		</a-scene>
-		<% include client-script.ejs %>  
+		<% include ../js/client-script.ejs %>  
 	</body>
 </html>

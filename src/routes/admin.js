@@ -15,15 +15,18 @@ admin.get('/admin', auth, function (req, res) {
     res.render('admin');
 })
 
+admin.get('/admin/login', function (req, res) {
+    res.render('adminConnexion',{erreur:null});
+})
 
 // Login endpoint
-admin.get('/admin/login', function (req, res) {
+admin.post('/admin/login', function (req, res) {
     if(req.session && req.session.user === UTILISATEUR && req.session.admin){
         res.redirect('/admin')  
     } else {
-        if (!req.query.u && !req.query.p) {
+        if (!req.body.u && !req.body.p) {
             res.render('adminConnexion',{erreur:null})
-        } else if(req.query.u === UTILISATEUR && req.query.p === MDP) {
+        } else if(req.body.u === UTILISATEUR && req.body.p === MDP) {
             req.session.user = UTILISATEUR;
             req.session.admin = true;
             res.redirect('/admin')
