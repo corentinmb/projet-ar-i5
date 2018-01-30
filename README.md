@@ -16,3 +16,11 @@ Adresse de production du dernier build réussi: http://projet-ar-i5.herokuapp.co
 + `npm install` : installation des dépendances
 + `npm start` ou `npm test`
 + Adresse locale en `localhost:3000`
+
+## Scénario
+
+Vous êtes enfermés dans le MyDil et vous avez 15 minutes pour sortir avant que la technologie ne s'empare de vous...
+
+## Solution
+
+Trouver la clé virtuelle qui déverouillera la porte, pour mener à bien cette mission, plusieurs indices vous seront mis à disposition (QRCode qui permettent de répondre à des énigmes)
